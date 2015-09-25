@@ -26,11 +26,11 @@ The columns are 69 i.e., subject code, activity description, activity code, plus
 
 In order to test the validity of the summarised data set the following code could be run against the data set finalised at 9. above:
 
-mean(finalDS[(finalDS$sub_code==1) & (finalDS$act_code==6), 4])
+_mean(finalDS[(finalDS$sub_code==1) & (finalDS$act_code==6), 4])_
 
 which is 0.2215982 and corresponds to the mean of column tBodyAcc-mean()-X (column 4) for subject 1 and activity LAYING (activity code 6) or
 
-mean(finalDS[(finalDS$sub_code==14) & (finalDS$act_descr=='WALKING_DOWNSTAIRS'), 8])
+_mean(finalDS[(finalDS$sub_code==14) & (finalDS$act_descr=='WALKING_DOWNSTAIRS'), 8])_
 
 which is 0.3788705 and corresponds to the mean of column tBodyAcc-std()-Y (column 8) for subject 14 and activity WALKING_DOWNSTAIRS.
 
