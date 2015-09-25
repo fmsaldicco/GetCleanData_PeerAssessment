@@ -21,7 +21,7 @@ The script pseudo code is as follows:
 10. the data frame is grouped by subject and activity description, then summarised applying the mean() function to each measure.
 11. the data frame is written to a file.
 
-The summarised data set contains (30 subject * 6 activities) = 180 observations.
+The summarised data set contains (30 subjects * 6 activities) = 180 observations.
 The columns are 69 i.e., subject code, activity description, activity code, plus 66 mean() related to the measures (features).
 
 In order to test the validity of the summarised data set the following code could be run against the data set finalised at 9. above:
