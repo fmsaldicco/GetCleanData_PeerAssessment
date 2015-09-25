@@ -34,7 +34,7 @@ unzip("dataset.zip")
 #############################
 ##### PERFORM TRANSFORMATIONS
 #############################
-#set working directory to the "UCI HAR Dataset" dataset one
+#set working directory to the "UCI HAR Dataset" one
 #Note: change it appropriately!
 setwd("C:/Users/FlavioMassimo/Desktop/Getting and Cleaning/UCI HAR Dataset")
 
@@ -43,7 +43,7 @@ act_text <- read.table("activity_labels.txt", header=FALSE, col.names=c("act_cod
 #read the lookup table with the variables descriptions
 feat_text <- read.table("features.txt", header=FALSE, col.names=c("feat_code", "feat_descr"))
 
-##### In this phase a tidy test dataset is created
+##### In this phase a tidy test data set is created
 #read the subject test data
 tstSub <- read.table("test/subject_test.txt", header=FALSE, col.names=c("sub_code"))
 #read the activity (code) test data 
@@ -51,7 +51,7 @@ tstAct <- read.table("test/y_test.txt", header=FALSE, col.names=c("act_code"))
 #read the test data
 tstDat <- read.table("test/X_test.txt", header=FALSE)
 
-#start bulding the tidy test dataset
+#start bulding the tidy test data set
 #1) bind columns subject and activity code
 tstComplete <- cbind(tstSub, tstAct)
 
@@ -68,10 +68,10 @@ tstComplete <- cbind(tstComplete, tstDat)
 #now change the column names (step 4 of the assignment)
 colnames(tstComplete) <- c("sub_code", "act_code", "act_descr", as.character(feat_text$feat_descr))
 
-##### At this point we have a tidy dataset of the test data called tstComplete;
-##### the same transformations are now applied to the train dataset.
+##### At this point we have a tidy data set of the test data called tstComplete;
+##### the same transformations are now applied to the train data set.
 
-##### In this phase a tidy train dataset is created
+##### In this phase a tidy train data set is created
 #read the subject train data
 trnSub <- read.table("train/subject_train.txt", header=FALSE, col.names=c("sub_code"))
 #read the activity (code) train data 
@@ -79,7 +79,7 @@ trnAct <- read.table("train/y_train.txt", header=FALSE, col.names=c("act_code"))
 #read the train data
 trnDat <- read.table("train/X_train.txt", header=FALSE)
 
-#start bulding the tidy train dataset
+#start bulding the tidy train data set
 #1) bind columns subject and activity code
 trnComplete <- cbind(trnSub, trnAct)
 
@@ -92,10 +92,10 @@ trnComplete <- cbind(trnComplete, trnDat)
 #now change the column names (step 4 of the assignment)
 colnames(trnComplete) <- c("sub_code", "act_code", "act_descr", as.character(feat_text$feat_descr))
 
-##### At this point we also have a tidy dataset of the train data called trnComplete.
+##### At this point we also have a tidy data set of the train data called trnComplete.
 
-##### Let's now merge the test and train datasets (tstComplete and trnComplete)
-##### into the final dataset (step 1 of the assignment).
+##### Let's now merge the test and train data sets (tstComplete and trnComplete)
+##### into the final consolidated data set (step 1 of the assignment).
 finalDS <- rbind(tstComplete, trnComplete)
 
 #now we need to remove all columns which are not a mean nor a
@@ -115,19 +115,19 @@ for(i in 82:4) {
     }
 }
 
-##### Eventually, we get a tidy and full dataset including test
-##### and train data, ready to be used to derive a new dataset
-##### which summarise data (step 5 of the assignment).
+##### Eventually, we get a tidy and full data set including test
+##### and train data, ready to be used to derive a new data set
+##### which summarises data (step 5 of the assignment).
 
 #dplyr library is needed for next "group_by/summarise" commands
 #Note: package dplyr must be installed beforehand!
 library("dplyr")
 
-#create a new dataset, grouped by subject and activity, where each
+#create a new data set, grouped by subject and activity, where each
 #column is the mean() of the column itself
 sumDS <- finalDS %>% group_by(sub_code, act_descr) %>% summarise_each(funs(mean))
 
-#write the new dataset into a file for uploading onto Coursera
+#write the new data set into a file for uploading onto Coursera
 write.table(sumDS, "sumDS.txt", row.names=FALSE)
 
 
